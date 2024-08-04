@@ -1,0 +1,22 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Admin\Traits\CrudTrait;
+use App\Http\Controllers\Controller;
+use App\Repositories\Admin\{{MODEL}}Repository;
+use App\UI\{{MODEL}}UI;
+
+class {{MODEL}}Controller extends Controller
+{
+    use CrudTrait;
+    
+    protected $model, $ui, $view, $title;
+    public function __construct({{MODEL}}Repository $model)
+    {
+        $this->model = $model;
+        $this->ui = new {{MODEL}}UI;
+        $this->view = "";
+        $this->title = "";
+    }
+}
