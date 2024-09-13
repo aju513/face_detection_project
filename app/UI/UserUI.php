@@ -11,11 +11,11 @@ class UserUI extends BaseUI
 
     public $route = 'users';
 
-    public $columns = [       
+    public $columns = [
         'name' => 'Name',
         'email' => 'Email',
-        'roles' => 'Roles',       
-        'status' => 'Status',        
+        'roles' => 'Roles',
+        'status' => 'Status',
     ];
 
     public $permissions = [
@@ -57,19 +57,19 @@ class UserUI extends BaseUI
             'route' => "admin.$this->route.create"
         ];
     }
-
     public $rules = [
         'store' => [
             'name' => 'required|max:255',
             'designation' => 'nullable|string|max:255',
             'email' => 'required|email:rfc,dns|unique:users',
             'password' => 'required|max:255|confirmed',
-            'roles' => 'array|nullable',           
+            'roles' => 'required',
         ],
         'update' => [
             'name' => 'required|max:255',
             'designation' => 'nullable|max:255',
-            'roles' => 'array|nullable',            
+            'email' => 'required',
+            'roles' => 'required',
         ]
     ];
     public function getMessages()
@@ -77,7 +77,7 @@ class UserUI extends BaseUI
         return [
             'required' => 'This field is required'
         ];
-    }    
+    }
 
     public function roles($model)
     {
@@ -88,7 +88,7 @@ class UserUI extends BaseUI
     {
         return view('admin.layouts.components.status', ['model' => $model]);
     }
-    
+
     public function login($model)
     {
         $online = false;
