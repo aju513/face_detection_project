@@ -1,16 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('website.layouts.default-without-header')
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
+@section('content')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
     <link rel="icon" href="{{ asset('img/icon.png') }}" type="image/x-icon" />
-
     <style>
         input:-webkit-autofill,
         input:-webkit-autofill:hover,
@@ -64,9 +60,6 @@
             color: red
         }
     </style>
-</head>
-
-<body>
     <div class="flex min-h-screen items-center justify-center bg-gradient-to-r p-4"
         style="background-image: url('{{ asset('img/bg-register.jpg') }}'); background-repeat: no-repeat; background-size: cover;">
         <div class="absolute inset-0 bg-black opacity-50 z-0"></div>
@@ -110,7 +103,7 @@
                         @include('admin.layouts.components.validation', ['name' => 'email'])
 
                         <div class="text-right">
-                            <a href="#" class="text-sm hover:underline text-blue-500">
+                            <a href="{{ route('website.reset.password') }}" class="text-sm hover:underline text-blue-500">
                                 Forgot Password?
                             </a>
                         </div>
@@ -165,6 +158,7 @@
             }
         }
     </script>
-</body>
+@endsection
+{{-- </body>
 
-</html>
+    </html> --}}

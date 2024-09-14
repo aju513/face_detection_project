@@ -23,6 +23,8 @@ return [
     //Settings
     'Manage Settings',
 
-
+    'Manage Personal Settings',
+    'Manage Account Settings',
+    'Manage Password Settings',
 
 ];
