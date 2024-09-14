@@ -45,12 +45,6 @@
                             aria-controls="profile-settings-4" role="tab">
                             <i class="ri ri-account-circle-line"></i> Account Settings
                         </button>
-                        <button type="button"
-                            class="hs-tab-active:bg-primary hs-tab-active:border-primary hs-tab-active:text-white dark:hs-tab-active:bg-primary dark:hs-tab-active:border-primary dark:hs-tab-active:text-white -me-px py-3 px-3 inline-flex items-center gap-2 bg-gray-50 text-sm font-medium text-center border text-gray-500 rounded-sm hover:text-gray-700 dark:bg-bodybg dark:border-white/10 dark:text-white/70 dark:hover:text-gray-300"
-                            id="profile-settings-item-5" data-hs-tab="#profile-settings-5"
-                            aria-controls="profile-settings-5" role="tab">
-                            <i class="ri ri-notification-4-line"></i> Notifications Settings
-                        </button>
                     </nav>
                 </div>
             </div>
@@ -61,7 +55,6 @@
                     @include('admin.settings.partials.personal-settings')
                     @include('admin.settings.partials.change-password')
                     @include('admin.settings.partials.account-settings')
-                    @include('admin.settings.partials.notification-settings')
                 </div>
 
             </div>
