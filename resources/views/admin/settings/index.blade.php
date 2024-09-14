@@ -1,5 +1,6 @@
 @extends('admin.layouts.default')
 @section('content')
+   
     <div class="main-content">
         <div class="block justify-between page-header md:flex">
             <div>

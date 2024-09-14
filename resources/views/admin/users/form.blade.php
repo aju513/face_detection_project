@@ -41,7 +41,7 @@
     <!-- Roles Field -->
     <div class="mb-4.5 w-full mb-2">
         {{ html()->label('Roles (*)')->for('roles[]')->class('mb-2.5 block text-black dark:text-white') }}
-        {{ html()->select('roles')->options($role_helper->dropdown())->placeholder('Select a roles...')->value($model->exists ? $model->roles()->first()->id : '')->class('ti-form-select py-2 px-3' . ($errors->has('roles') ? ' is-invalid' : '')) }}
+        {{ html()->select('roles')->options($role_helper->dropdown())->placeholder('Select a roles...')->value(isset($model->roles()->first()->id) ? $model->roles()->first()->id : '')->class('ti-form-select py-2 px-3' . ($errors->has('roles') ? ' is-invalid' : '')) }}
 
         @include('admin.layouts.components.validation', ['name' => 'roles'])
     </div>

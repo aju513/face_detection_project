@@ -23,6 +23,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'phone'
     ];
 
     /**
@@ -64,5 +65,9 @@ class User extends Authenticatable
     public function memberable()
     {
         return $this->morphTo();
+    }
+    public function medias()
+    {
+        return $this->hasMany(Media::class);
     }
 }

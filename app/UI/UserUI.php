@@ -75,7 +75,9 @@ class UserUI extends BaseUI
     public function getMessages()
     {
         return [
-            'required' => 'This field is required'
+            'required' => 'This field is required',
+            'phone_no.regex' => 'The phone number format is invalid.',
+            'email.email' => 'The email address must be a valid email.',
         ];
     }
 
@@ -110,7 +112,13 @@ class UserUI extends BaseUI
     {
         return [
             'name' => 'required|max:255',
-            'designation' => 'nullable|max:255',
+            'phone' => [
+                'nullable',
+                'string',
+                'regex:/^\+?[1-9]\d{1,14}$/',
+                'min:10',
+                'max:15',
+            ],
         ];
     }
 }
