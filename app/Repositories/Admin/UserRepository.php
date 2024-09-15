@@ -20,6 +20,7 @@ class UserRepository
     }
     public function store($data, $member = null)
     {
+
         $data['password'] = Hash::make($data['password']);
         $model = $this->model->create($data);
         if ($this->model->pivots) {
@@ -60,7 +61,7 @@ class UserRepository
         }
 
         if (isset($params['status']) && $params['status'] !== "") {
-            $this->model =  $this->model->where('status', $params['status']);
+            $this->model = $this->model->where('status', $params['status']);
         }
         return $this;
     }

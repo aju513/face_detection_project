@@ -1,44 +1,64 @@
 @extends('admin.layouts.default')
 @section('content')
-<main class="overflow-y-scroll no-scrollbar mb-10">
-    <div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10 ">
-        {!! htmlScriptTagJsApi() !!}
-        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-            <nav>
-                <ol class="flex gap-2 text-title-sm">
-                    <li><a href="{{route('admin.dashboard')}}">{{__('menu.Dashboard')}} /</a></li>
-                    <li class="text-primary">
-                        <a href="">{{__('menu.'.$title)}}</a>
-                    </li>
-                </ol>
-            </nav>
-        </div>
-        <hr class="my-3 text-stroke">
-        <div class="mb-14 w-full p-7.5">
-            <div class="flex flex-wrap gap-3 border-b border-stroke pb-5 dark:border-strokedark">
-                @foreach ($settings as $setting)
-                @can($setting->permission)
-                <a href="{{ route('admin.settings.edit', ['name' => $setting->name]) }}"
-                    class="rounded-md py-3 px-4 text-sm font-medium hover:bg-secondary hover:text-white dark:hover:bg-secondary md:text-base lg:px-6
-                                @if ($setting->name == $model->name) bg-primary text-white @else bg-gray dark:bg-meta-4 text-black dark:text-white @endif">
-                    {{ __('admin.' . $setting->display_name) }}
-                </a>
-                @endcan
-                @endforeach
+   
+    <div class="main-content">
+        <div class="block justify-between page-header md:flex">
+            <div>
+                <h3 class="text-gray-700 hover:text-gray-900 dark:text-white dark:hover:text-white text-2xl font-medium">
+                    Profile
+                    Settings</h3>
             </div>
-            <div class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-                <div class="p-6.5">
-                    {{ html()->modelForm($model,'PUT')->route('admin.settings.update',['name' =>
-                    $model->name])->acceptsFiles()->open() }}
-                    @include("admin.settings.partials." . $model->name)
-                    <button type="submit"
-                        class="mt-3 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                        {{ __('admin.submit') }}
-                    </button>
-                    {{ html()->form()->close() }}
+            <ol class="flex items-center whitespace-nowrap min-w-0">
+                <li class="text-sm">
+                    <a class="flex items-center font-semibold text-primary hover:text-primary dark:text-primary truncate"
+                        href="javascript:void(0);">
+                        Pages
+                        <i
+                            class="ti ti-chevrons-right flex-shrink-0 mx-3 overflow-visible text-gray-300 dark:text-gray-300 rtl:rotate-180"></i>
+                    </a>
+                </li>
+                <li class="text-sm text-gray-500 hover:text-primary dark:text-white/70 " aria-current="page">
+                    Profile Settings
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="grid grid-cols-12 gap-x-6">
+        <div class="col-span-12 xl:col-span-3">
+            <div class="box">
+                <div class="box-body pt-0 mt-4">
+                    <nav class="flex flex-col space-y-2" aria-label="Tabs" role="tablist" data-hs-tabs-vertical="true">
+                        <button type="button"
+                            class="hs-tab-active:bg-primary hs-tab-active:border-primary hs-tab-active:text-white dark:hs-tab-active:bg-primary dark:hs-tab-active:border-primary dark:hs-tab-active:text-white -me-px py-3 px-3 inline-flex items-center gap-2 bg-gray-50 text-sm font-medium text-center border text-gray-500 rounded-sm hover:text-gray-700 dark:bg-bodybg dark:border-white/10 dark:text-white/70 active"
+                            id="profile-settings-item-1" data-hs-tab="#profile-settings-1"
+                            aria-controls="profile-settings-1" role="tab">
+                            <i class="ri ri-shield-user-line"></i> Personal Settings
+                        </button>
+                        <button type="button"
+                            class="hs-tab-active:bg-primary hs-tab-active:border-primary hs-tab-active:text-white dark:hs-tab-active:bg-primary dark:hs-tab-active:border-primary dark:hs-tab-active:text-white -me-px py-3 px-3 inline-flex items-center gap-2 bg-gray-50 text-sm font-medium text-center border text-gray-500 rounded-sm hover:text-gray-700 dark:bg-bodybg dark:border-white/10 dark:text-white/70 dark:hover:text-gray-300"
+                            id="profile-settings-item-3" data-hs-tab="#profile-settings-3"
+                            aria-controls="profile-settings-3" role="tab">
+                            <i class="ri ri-lock-line"></i> Password Settings
+                        </button>
+                        <button type="button"
+                            class="hs-tab-active:bg-primary hs-tab-active:border-primary hs-tab-active:text-white dark:hs-tab-active:bg-primary dark:hs-tab-active:border-primary dark:hs-tab-active:text-white -me-px py-3 px-3 inline-flex items-center gap-2 bg-gray-50 text-sm font-medium text-center border text-gray-500 rounded-sm hover:text-gray-700 dark:bg-bodybg dark:border-white/10 dark:text-white/70 dark:hover:text-gray-300"
+                            id="profile-settings-item-4" data-hs-tab="#profile-settings-4"
+                            aria-controls="profile-settings-4" role="tab">
+                            <i class="ri ri-account-circle-line"></i> Account Settings
+                        </button>
+                    </nav>
                 </div>
             </div>
         </div>
+        <div class="col-span-12 xl:col-span-9">
+            <div class="box">
+                <div class="box-body p-0">
+                    @include('admin.settings.partials.personal-settings')
+                    @include('admin.settings.partials.change-password')
+                    @include('admin.settings.partials.account-settings')
+                </div>
+
+            </div>
+        </div>
     </div>
-</main>
 @endsection

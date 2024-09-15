@@ -1,73 +1,164 @@
-@extends('website.layouts.default')
+@extends('website.layouts.default-without-header')
+
 @section('content')
-    {{-- {!! htmlScriptTagJsApi() !!} --}}
-    <main class="w-full max-w-md mx-auto p-6" id="content">
-        <a href="{{ url('/') }}" class="header-logo">
-            <img src="{{ asset('img/col-h.png') }}" alt="logo" class="mx-auto block dark:hidden">
-            <img src="{{ asset('img/col-hw.png') }}" alt="logo" class="mx-auto hidden dark:block">
-        </a>
-        <div class="mt-7 bg-white rounded-sm shadow-sm dark:bg-bgdark">
-            <div class="p-4 sm:p-7">
-                <div class="text-center">
-                    <h1 class="block text-2xl font-bold text-gray-800 dark:text-white">Sign in</h1>
-                    {{-- <p class="mt-3 text-sm text-gray-600 dark:text-white/70">
-                        Don't have an account yet?
-                        <a class="text-primary decoration-2 hover:underline font-medium"
-                            href="signup.html">
-                            Sign up here
-                        </a>
-                    </p> --}}
-                </div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
-                <div class="mt-5">
-                    {{-- <button type="button"
-                        class="w-full py-2 px-3 inline-flex justify-center items-center gap-2 rounded-sm border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-0 focus:ring-offset-0 focus:ring-offset-white focus:ring-primary transition-all text-sm dark:bg-bgdark dark:hover:bg-black/20 dark:border-white/10 dark:text-white/70 dark:hover:text-white dark:focus:ring-offset-white/10">
-                        <img src="../assets/img/authentication/social/1.png" class="w-4 h-4" alt="google-img">Sign in with Google
-                    </button>
+    <link rel="icon" href="{{ asset('img/icon.png') }}" type="image/x-icon" />
+    <style>
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover,
+        input:-webkit-autofill:focus,
+        input:-webkit-autofill:active {
+            -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+            transition: background-color 5000s ease-in-out 0s;
+        }
 
-                    <div
-                        class="py-3 flex items-center text-xs text-gray-400 uppercase before:flex-[1_1_0%] before:border-t before:border-gray-200 before:me-6 after:flex-[1_1_0%] after:border-t after:border-gray-200 after:ms-6 dark:text-white/70 dark:before:border-white/10 dark:after:border-white/10">
-                        Or</div> --}}
-                    <form method="POST" method="{{ route('login') }}">
-                        @csrf
-                        <!-- Form -->
-                        <div>
-                            <div class="grid gap-y-4">
-                                <!-- Form Group -->
-                                <div>
-                                    <label for="email" class="block text-sm mb-2 dark:text-white">Email address</label>
-                                    <div class="relative">
-                                        <input type="email" id="email" name="email"
-                                            class="py-2 px-3 block w-full border-gray-200 rounded-sm text-sm focus:border-primary focus:ring-primary dark:bg-bgdark dark:border-white/10 dark:text-white/70"
-                                            required>
-                                    </div>
-                                </div>
-                                <!-- End Form Group -->
+        .shadow {
+            box-shadow: 0 0 35px rgba(99, 98, 98, 0.19),
+                0 0 35px rgba(105, 99, 99, 0.23);
+            transition: all 0.3s ease-in-out;
+        }
 
-                                <!-- Form Group -->
-                                <div>
-                                    <div class="flex justify-between items-center">
-                                        <label for="password" class="block text-sm mb-2 dark:text-white">Password</label>
-                                        <a class="text-sm text-primary decoration-2 hover:underline font-medium"
-                                            href="forgot.html">Forgot password?</a>
-                                    </div>
-                                    <div class="relative">
-                                        <input type="password" id="password" name="password"
-                                            class="py-2 px-3 block w-full border-gray-200 rounded-sm text-sm focus:border-primary focus:ring-primary dark:bg-bgdark dark:border-white/10 dark:text-white/70"
-                                            required>
-                                    </div>
-                                </div>
-                                <!-- End Form Group -->
+        .input-container {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid rgb(32, 32, 32);
+            border-radius: 0.5rem;
+            transition: border-color 0.3s ease;
+            position: relative;
+        }
 
-                                <button type="submit"
-                                    class="py-2 px-3 inline-flex justify-center items-center gap-2 rounded-sm border border-transparent font-semibold bg-primary text-white hover:bg-primary focus:outline-none focus:ring-0 focus:ring-primary focus:ring-offset-0 transition-all text-sm dark:focus:ring-offset-white/10">Sign
-                                    in</button>
-                            </div>
-                        </div>
-                        <!-- End Form -->
-                    </form>
+        .input-container.focused {
+            border-color: #032ce5;
+        }
+
+        .input-container input {
+            width: 100%;
+            padding: 0.5rem;
+            border: none;
+            background: transparent;
+            outline: none;
+        }
+
+        .input-container input:focus {
+            outline: none;
+        }
+
+        .bg-opacity {
+            background-color: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(5px);
+        }
+
+        .input-container input::placeholder {
+            color: black;
+        }
+
+        .text-danger {
+            color: red
+        }
+    </style>
+    <div class="flex min-h-screen items-center justify-center bg-gradient-to-r p-4"
+        style="background-image: url('{{ asset('img/bg-register.jpg') }}'); background-repeat: no-repeat; background-size: cover;">
+        <div class="absolute inset-0 bg-black opacity-50 z-0"></div>
+        <div
+            class="bg-opacity relative z-10 flex flex-col md:flex-row rounded-lg shadow overflow-hidden max-w-4xl w-full py-12">
+            <div class="md:w-1/2 hidden md:flex p-4 border-r-2 border-gray-300 justify-center items-center">
+                <div class="flex flex-col gap-4 items-center justify-center">
+                    <img src="{{ asset('img/icon.png') }}" alt="Side Image"
+                        class="w-48 h-auto object-cover items-center justify-center" />
+                    <h1 class="text-4xl font-semibold">COL Architecture</h1>
                 </div>
             </div>
+
+            <div class="w-full md:w-1/2 p-6 md:p-10 items-center gap-2">
+                <div class="flex flex-col items-center gap-2">
+                    <h2 class="text-2xl font-semibold">Login to Dashboard</h2>
+                    <div class="mb-6">
+                        <p class="text-sm text-xl">Learn COL Global</p>
+                    </div>
+                </div>
+                <form class="flex flex-col gap-10 justify-center" method="POST" method="{{ route('login') }}">
+                    @csrf
+                    <div class="flex flex-col gap-2">
+                        <div class="flex flex-col gap-2">
+                            <div class="relative flex items-center gap-1 justify-center">
+                                <div class="input-container" id="emailContainer">
+                                    <input type="email" id="emailInput" placeholder="Email Address" name="email" />
+                                </div>
+                            </div>
+                            <div class="relative flex items-center">
+                                <div class="input-container justify-center" id="passwordContainer">
+                                    <input type="password" id="passwordInput" placeholder="*********" name="password" />
+                                    <button type="button" onclick="togglePasswordVisibility()"
+                                        class="absolute inset-y-0 right-3 flex items-center text-gray-500"
+                                        id="togglePasswordButton" aria-label="Toggle password visibility">
+                                        <i id="passwordIcon" class="fas fa-eye-slash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        @include('admin.layouts.components.validation', ['name' => 'email'])
+
+                        <div class="text-right">
+                            <a href="{{ route('website.reset.password') }}" class="text-sm hover:underline text-blue-500">
+                                Forgot Password?
+                            </a>
+                        </div>
+                    </div>
+
+                    <button type="submit"
+                        class="w-full px-4 py-4 bg-blue-500 text-white rounded-lg hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-600 font-bold">
+                        Login
+                    </button>
+                </form>
+
+            </div>
         </div>
-    </main>
+    </div>
+    <script>
+        const emailContainer = document.getElementById("emailContainer");
+        const emailInput = document.getElementById("emailInput");
+        const passwordContainer = document.getElementById("passwordContainer");
+        const passwordInput = document.getElementById("passwordInput");
+
+        emailInput.addEventListener("focus", () => {
+            emailContainer.classList.add("focused");
+        });
+
+        emailInput.addEventListener("blur", () => {
+            emailContainer.classList.remove("focused");
+        });
+
+        passwordInput.addEventListener("focus", () => {
+            passwordContainer.classList.add("focused");
+        });
+
+        passwordInput.addEventListener("blur", () => {
+            passwordContainer.classList.remove("focused");
+        });
+    </script>
+    <script>
+        let showPassword = false;
+
+        function togglePasswordVisibility() {
+            showPassword = !showPassword;
+            const passwordInput = document.getElementById("passwordInput");
+            const passwordIcon = document.getElementById("passwordIcon");
+            if (showPassword) {
+                passwordInput.type = "text";
+                passwordIcon.classList.remove("fa-eye-slash");
+                passwordIcon.classList.add("fa-eye");
+            } else {
+                passwordInput.type = "password";
+                passwordIcon.classList.remove("fa-eye");
+                passwordIcon.classList.add("fa-eye-slash");
+            }
+        }
+    </script>
 @endsection
+{{-- </body>
+
+    </html> --}}
