@@ -17,8 +17,12 @@ class SettingController extends Controller
         $this->title = "Settings";
     }
 
+    public function index()
+    {
+        return view('admin.settings.index');
+    }
     public function show($name = null)
-    {        
+    {
         if ($name) {
             $model = $this->model->find($name);
         } else {

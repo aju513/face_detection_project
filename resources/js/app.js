@@ -6,7 +6,7 @@ import "../css/style.css";
 import "../libs/simplebar/simplebar.min.css";
 import "../libs/@simonwep/pickr/themes/nano.min.css";
 import "../libs/jsvectormap/css/jsvectormap.min.css";
-
+import "../libs/awesome-notifications/style.css";
 // Importing external libraries (JavaScript)
 import "../libs/@popperjs/core/umd/popper.min.js";
 import "../libs/@simonwep/pickr/pickr.es5.min.js";
@@ -16,6 +16,7 @@ import "../libs/apexcharts/apexcharts.min.js";
 import "../libs/chart.js/chart.min.js";
 import "../libs/choices.js/public/assets/scripts/choices.min.js";
 import "../libs/choices.js/public/assets/styles/choices.min.css";
+import "../libs/awesome-notifications/index.var.js";
 
 import "./main.js";
 import "./chart.js";

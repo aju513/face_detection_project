@@ -68,7 +68,7 @@ trait CrudTrait
             return Excel::download(new $this->export($query), $this->title . '.xlsx');
         }
         if (view()->exists("$this->dir/$this->view/index")) {
-            $view =     "$this->dir/$this->view/index";
+            $view = "$this->dir/$this->view/index";
         }
         return view($view, [
             'records' => $records,
@@ -103,6 +103,7 @@ trait CrudTrait
 
     public function store(Request $request)
     {
+
         $params = $request->query();
         $this->checkPermission($this->ui->getPermission('store'));
 
@@ -116,6 +117,7 @@ trait CrudTrait
         }
 
         if ($request->get('submit') === "RSUBMIT") {
+
             return redirect()->route("$this->route.{$this->ui->route}.create", $params)
                 ->with('message', 'Record Added Successfully');
         }
@@ -127,16 +129,18 @@ trait CrudTrait
         $log = new ActivityLogHelper();
         $log->log('Created', ":causer.name Created $this->title", ['url' => $request->fullUrl()]);
 
-        if ($request->get('redirect_url')) {
-            return redirect($request->get('redirect_url'))->with('message', 'Record Added Successfully');
+        if ($model['redirect_url']) {
+            return redirect($model['redirect_url'])->with('message', 'Record Added Successfully');
         }
-
+        if ($request['redirect_url']) {
+            return redirect($request['redirect_url'])->with('message', 'Record Added Successfully');
+        }
         return $this->redirect('Record added successfully', $params);
     }
 
 
 
-    public function edit($id, Request  $request)
+    public function edit($id, Request $request)
     {
         $this->checkPermission($this->ui->getPermission('edit'));
         $params = $request->query();
@@ -173,9 +177,9 @@ trait CrudTrait
         $this->checkPermission($this->ui->getPermission('update'));
         $params = $request->query();
         $query = $this->model;
-        $query = $query->scope();
         $model = $query->find($id);
-        $rules = $this->ui->getUpdateRules($model)  + ['medias' => 'array|nullable'];
+        $query = $query->scope();
+        $rules = $this->ui->getUpdateRules($model) + ['medias' => 'array|nullable'];
         $data = $request->validate($rules, $this->ui->getMessages());
         $model = $this->model->update($id, $data);
         if ($model && $model->media) {
@@ -191,6 +195,10 @@ trait CrudTrait
         if ($request->get('redirect_url')) {
             return redirect($request->get('redirect_url'))->with('message', 'Record Updated Successfully');
         }
+        if ($model['redirect_url']) {
+            return redirect($model['redirect_url'])->with('message', 'Record Updated Successfully');
+        }
+
         return $this->redirect('Record updated successfully', $params);
     }
 
@@ -223,7 +231,8 @@ trait CrudTrait
             'url' => $request->fullUrl()
         ]);
         if ($request->get('redirect_url')) {
-            return redirect($request->get('redirect_url'))->with('message', 'Record deleted successfully');;
+            return redirect($request->get('redirect_url'))->with('message', 'Record deleted successfully');
+            ;
         }
         return $this->redirect($message, $params);
     }

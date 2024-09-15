@@ -54,17 +54,15 @@
                                     class="ti-dropdown-header !bg-primary border-b dark:border-white/10 flex justify-between items-center">
                                     <p class="ti-dropdown-header-title !text-white font-semibold">Notifications
                                     </p>
-                                    <a href="javascript:void(0)"
-                                        class="badge bg-black/20 text-white rounded-sm">Mark All Read</a>
+                                    <a href="javascript:void(0)" class="badge bg-black/20 text-white rounded-sm">Mark
+                                        All Read</a>
                                 </div>
                                 <div class="ti-dropdown-divider divide-y divide-gray-200 dark:divide-white/10">
                                     <div class="py-2 first:pt-0 last:pb-0" id="allNotifyContainer">
                                         <div class="ti-dropdown-item relative header-box">
-                                            <a href="mail-inbox.html"
-                                                class="flex space-x-3 rtl:space-x-reverse">
+                                            <a href="mail-inbox.html" class="flex space-x-3 rtl:space-x-reverse">
                                                 <div class="me-2 avatar rounded-full ring-0">
-                                                    <img src="/img/users/17.jpg" alt="img"
-                                                        class="rounded-sm">
+                                                    <img src="/img/users/17.jpg" alt="img" class="rounded-sm">
                                                 </div>
                                                 <div class="relative w-full">
                                                     <h5
@@ -85,8 +83,7 @@
                                             <a href="mail-inbox.html"
                                                 class="flex items-center space-x-3 rtl:space-x-reverse">
                                                 <div class="me-2 avatar rounded-full ring-0">
-                                                    <img src="/img/users/2.jpg" alt="img"
-                                                        class="rounded-sm">
+                                                    <img src="/img/users/2.jpg" alt="img" class="rounded-sm">
                                                 </div>
                                                 <div class="relative w-full">
                                                     <h5
@@ -107,8 +104,7 @@
                                             <a href="mail-inbox.html"
                                                 class="flex items-center space-x-3 rtl:space-x-reverse">
                                                 <div class="me-2 avatar rounded-full ring-0">
-                                                    <img src="/img/users/21.jpg" alt="img"
-                                                        class="rounded-sm">
+                                                    <img src="/img/users/21.jpg" alt="img" class="rounded-sm">
                                                 </div>
                                                 <div class="relative w-full">
                                                     <h5
@@ -129,8 +125,7 @@
                                             <a href="mail-inbox.html"
                                                 class="flex items-center space-x-3 rtl:space-x-reverse">
                                                 <div class="me-2 avatar rounded-full ring-0">
-                                                    <img src="/img/users/11.jpg" alt="img"
-                                                        class="rounded-sm">
+                                                    <img src="/img/users/11.jpg" alt="img" class="rounded-sm">
                                                 </div>
                                                 <div class="relative w-full">
                                                     <h5
@@ -157,8 +152,7 @@
                             </div>
                         </div>
 
-                        <div class="header-profile hs-dropdown ti-dropdown"
-                            data-hs-dropdown-placement="bottom-right">
+                        <div class="header-profile hs-dropdown ti-dropdown" data-hs-dropdown-placement="bottom-right">
                             <button id="dropdown-profile" type="button"
                                 class="hs-dropdown-toggle ti-dropdown-toggle gap-2 p-0 flex-shrink-0 h-8 w-8 rounded-full shadow-none focus:ring-gray-400 text-xs dark:focus:ring-white/10">
                                 <img class="inline-block rounded-full ring-2 ring-white dark:ring-white/10"
@@ -173,16 +167,17 @@
                                             src="{{ asset('img/col.png') }}" alt="profile-img">
                                     </div>
                                     <div>
-                                        <p class="ti-dropdown-header-title !text-white">Json Taylor</p>
-                                        <p class="ti-dropdown-header-content !text-white/50">Web Designer</p>
+                                        <p class="ti-dropdown-header-title !text-white">{{ auth()->user()->name }}</p>
+                                        <p class="ti-dropdown-header-content !text-white/50">
+                                            {{ auth()->user()->email }}</p>
                                     </div>
                                 </div>
                                 <div class="mt-2 ti-dropdown-divider">
-                                    <a href="profile.html" class="ti-dropdown-item">
+                                    {{-- <a href="profile.html" class="ti-dropdown-item">
                                         <i class="ti ti-user-circle text-lg"></i>
                                         Profile
-                                    </a>
-                                    <a href="profile-settings.html" class="ti-dropdown-item">
+                                    </a> --}}
+                                    <a href="{{ route('admin.settings.index') }}" class="ti-dropdown-item">
                                         <i class="ti ti-adjustments-horizontal text-lg"></i>
                                         Settings
                                     </a>
