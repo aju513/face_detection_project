@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\Website;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ResetPasswordMail;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
+use Str;
 
 class HomeController extends Controller
 {
@@ -92,7 +95,7 @@ class HomeController extends Controller
             return response()->json([
                 'isSuccess' => false,
                 'Message' => "Your Current password does not matches with the password you provided. Please try again."
-            ], 200); // Status code 
+            ], 200); // Status code
         } else {
             $user = User::find($id);
             $user->password = Hash::make($request->get('password'));
@@ -113,5 +116,29 @@ class HomeController extends Controller
                 ], 200); // Status code here
             }
         }
+    }
+    public function resetPassword(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|exists:users,email',
+        ], [
+            'email.required' => 'Please provide an email address.',
+            'email.exists' => 'The email address you entered does not match our records.'
+        ]);
+        $user = User::where('email', $request->email)->first();
+        $password = Str::random(10);
+
+        if ($user) {
+            $user->update(
+                [
+                    'password' => Hash::make($password)
+                ]
+            );
+            Mail::to($request->email)->send(new ResetPasswordMail($request->email, $password));
+            return redirect()->route('login')->with('message', 'Email Sent Successfully');
+        }
+        return back()->with('error', 'Something Went Wrong');
+
+
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Website\HomeController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Contracts\LogoutResponse;
 
@@ -10,7 +11,10 @@ if (config('website.route.home') !== false) {
         return redirect()->route('login');
     });
 }
-
+Route::get('/reset-password', function () {
+    return view('auth.forgot-password');
+})->name('reset.password');
+Route::post('/reset-password', [HomeController::class, 'resetPassword'])->name('update.password');
 Route::post('logout', function () {
     $user = auth()->logout();
     request()->session()->invalidate();

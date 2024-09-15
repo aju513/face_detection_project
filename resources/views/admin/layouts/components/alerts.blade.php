@@ -1,6 +1,7 @@
 @if (session('message'))
     <script>
-        toastr.success('Sucessfully Added.', 'Success', {
+        var message = @json(session('message'));
+        toastr.success(message, 'Success', {
             closeButton: true,
             progressBar: true,
             positionClass: "toast-top-right", // Position: top-right, you can change it to "toast-bottom-left", etc.
@@ -10,7 +11,8 @@
 @endif
 @if (session('error'))
     <script>
-        toastr.success('Something Went Wrong.', 'Error', {
+        var errorMessage = @json(session('error'));
+        toastr.success(errorMessage, 'Error', {
             closeButton: true,
             progressBar: true,
             positionClass: "toast-top-right", // Position: top-right, you can change it to "toast-bottom-left", etc.
