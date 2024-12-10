@@ -10,7 +10,7 @@ use Intervention\Image\ImageManager;
 class ImageHelper
 {
     /**
-     *
+     * Resize and crop an image.
      *
      * @param int $max_width The desired width of the image.
      * @param int $max_height The desired height of the image.
@@ -18,39 +18,26 @@ class ImageHelper
      * @param string $filename The filename to save the processed image as.
      * @return bool True if the image was processed successfully, false otherwise.
      */
-    public static function resizeCropImages(UploadedFile $uploadedImage, $directory, $width = null, $height = null, $quality = 75): string
+    public static function resizeCropImages($max_width, $max_height, UploadedFile $uploadedImage, $directory): string
     {
+
         if (!File::exists($directory)) {
             File::makeDirectory($directory, 0755, true);
         }
-
         $filename = time() . '.' . $uploadedImage->getClientOriginalExtension();
         $manager = new ImageManager(new Driver());
-        $image = $manager->make($uploadedImage);
-
-        // Resize and crop the image only if width and height are provided
-        if ($width && $height) {
-            $image->fit($width, $height);
-        }
-
-
-        $image->save($directory . $filename, $quality);
-
+        $image = $manager->read($uploadedImage);
+        $imgSize = getimagesize($uploadedImage);
+        // $width = $imgSize[0];
+        // $width = $imgSize[1];
+        $image->save($directory . $filename);
         return $filename;
     }
-
-    /**
-     * Unlink (delete) an image from the server.
-     *
-     * @param string $filePath The path to the image file to be deleted.
-     * @return bool True if the file was deleted successfully, false otherwise.
-     */
-    public static function unlinkImage($filePath): bool
+    function deleteOldImage($directory, $filename)
     {
-        if (File::exists($filePath)) {
-            return unlink($filePath);
+        $imagePath = $directory . '/' . $filename;
+        if ($filename && file_exists($imagePath)) {
+            unlink($imagePath);
         }
-
-        return false;
     }
 }

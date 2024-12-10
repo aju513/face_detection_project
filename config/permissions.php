@@ -27,4 +27,10 @@ return [
     'Manage Account Settings',
     'Manage Password Settings',
 
+
+    //Roles
+    'Manage Teachers',
+    'Create Teachers',
+    'Edit Teachers',
+    'Delete Teachers',
 ];

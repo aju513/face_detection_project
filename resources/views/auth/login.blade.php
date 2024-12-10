@@ -69,16 +69,14 @@
                 <div class="flex flex-col gap-4 items-center justify-center">
                     <img src="{{ asset('img/icon.png') }}" alt="Side Image"
                         class="w-48 h-auto object-cover items-center justify-center" />
-                    <h1 class="text-4xl font-semibold">COL Architecture</h1>
+                    <h1 class="text-4xl font-semibold">Attendex</h1>
                 </div>
             </div>
 
             <div class="w-full md:w-1/2 p-6 md:p-10 items-center gap-2">
                 <div class="flex flex-col items-center gap-2">
                     <h2 class="text-2xl font-semibold">Login to Dashboard</h2>
-                    <div class="mb-6">
-                        <p class="text-sm text-xl">Learn COL Global</p>
-                    </div>
+
                 </div>
                 <form class="flex flex-col gap-10 justify-center" method="POST" method="{{ route('login') }}">
                     @csrf

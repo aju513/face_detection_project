@@ -34,8 +34,8 @@ return [
         "order" => 2,
         "permission" => "Manage Roles",
         "route" => "admin.roles.index"
-    ],    
-        
+    ],
+
     [
         'name' => "activities",
         "display_name" => "Activities",
@@ -43,5 +43,14 @@ return [
         "order" => 3,
         "permission" => "Manage Activities",
         "route" => "admin.activities.index"
-    ],   
+    ],
+
+    [
+        'name' => "teachers",
+        "display_name" => "Teacher",
+        "icon" => "bi bi-safe",
+        "order" => 4,
+        "permission" => "Manage Teachers",
+        "route" => "admin.teachers.index"
+    ],
 ];

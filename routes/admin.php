@@ -22,3 +22,4 @@ Route::put('settings/{name}', 'SettingController@update')->name('settings.update
 Route::resource('users', 'UserController');
 Route::resource('roles', 'RoleController');
 Route::resource('activities', 'ActivityController')->only(['index', 'show', 'destroy']);
+Route::resource('teachers', 'TeacherController');
