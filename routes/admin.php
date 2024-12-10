@@ -23,3 +23,4 @@ Route::resource('users', 'UserController');
 Route::resource('roles', 'RoleController');
 Route::resource('activities', 'ActivityController')->only(['index', 'show', 'destroy']);
 Route::resource('teachers', 'TeacherController');
+Route::resource('students', 'StudentController');

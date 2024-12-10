@@ -53,4 +53,12 @@ return [
         "permission" => "Manage Teachers",
         "route" => "admin.teachers.index"
     ],
+    [
+        'name' => "students",
+        "display_name" => "Students",
+        "icon" => "bi bi-safe",
+        "order" => 5,
+        "permission" => "Manage Students",
+        "route" => "admin.students.index"
+    ],
 ];

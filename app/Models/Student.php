@@ -10,9 +10,10 @@ class Student extends BaseModel
 {
     use SoftDeletes, HasTranslations;
 
-    protected $table = "";
+    protected $table = "students";
 
-    protected $fillable = [];
+    protected $fillable = ['name', 'email', 'photo'];
 
     public $translatable = [];
+    const IMG_PATH = 'students';
 }

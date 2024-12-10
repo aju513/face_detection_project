@@ -3,28 +3,28 @@
 namespace App\Repositories\Admin;
 
 use App\Helpers\ImageHelper;
+use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\User;
 use App\Repositories\Common\Traits\CommonRepositoryTrait;
 use App\Repositories\Common\Traits\CrudRepositoryTrait;
 use App\Repositories\Common\Traits\SearchRepositoryTrait;
 
-class TeacherRepository
+class StudentRepository
 {
     use CommonRepositoryTrait, CrudRepositoryTrait, SearchRepositoryTrait;
 
-    protected $model, $imageHelper, $user;
+    protected $model, $user, $imageHelper;
 
-    public function __construct(Teacher $model, ImageHelper $imageHelper, User $user)
+    public function __construct(Student $model, User $user, ImageHelper $imageHelper, )
     {
         $this->model = $model;
         $this->imageHelper = $imageHelper;
-        $this->user = $user;
     }
     public function store($data)
     {
         if (isset($data['photo']) && $data['photo']->isValid()) {
-            $directory = storage_path('app/public/' . Teacher::IMG_PATH . '/');
+            $directory = storage_path('app/public/' . Student::IMG_PATH . '/');
 
             $filename = $this->imageHelper->resizeCropImages(800, 600, $data['photo'], $directory);
             $data['photo'] = $filename;
@@ -40,9 +40,7 @@ class TeacherRepository
             'memberable_type' => get_class($model),
         ]);
 
-        $user->assignRole(2);
+        $user->assignRole(3);
         return $model;
     }
-
-
 }
