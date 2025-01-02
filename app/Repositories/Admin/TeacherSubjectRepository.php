@@ -17,4 +17,9 @@ class TeacherSubjectRepository
     {
         $this->model = $model;
     }
+    public function store($data)
+    {
+        $data['days_of_week'] = json_encode($data['days_of_week']);
+        return $this->model->create($data);
+    }
 }

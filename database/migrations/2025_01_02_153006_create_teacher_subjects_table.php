@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('teacher_subjects', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('teacher_id')->constrained('users');  // Foreign Key to Users (Teachers)
+            $table->foreignId('teacher_id')->constrained('teachers');  // Foreign Key to Users (Teachers)
             $table->foreignId('subject_id')->constrained('subjects');  // Foreign Key to Subjects
             $table->json('days_of_week');
             $table->time('start_time');

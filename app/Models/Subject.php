@@ -16,4 +16,14 @@ class Subject extends BaseModel
 
     public $translatable = [];
 
+    public function teacherSubjects()
+    {
+        return $this->hasMany(TeacherSubject::class);
+    }
+
+    public function teachers()
+    {
+        return $this->belongsToMany(Teacher::class, 'teacher_subjects', 'subject_id', 'teacher_id')
+            ->withPivot('days_of_week', 'start_time', 'end_time');
+    }
 }

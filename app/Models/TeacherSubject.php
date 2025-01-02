@@ -8,11 +8,20 @@ use Spatie\Translatable\HasTranslations;
 
 class TeacherSubject extends BaseModel
 {
-    use SoftDeletes, HasTranslations;
+    use HasTranslations;
 
     protected $table = "teacher_subjects";
 
     protected $fillable = ['teacher_id', 'subject_id', 'days_of_week', 'start_time', 'end_time'];
 
     public $translatable = [];
+    public function teacher()
+    {
+        return $this->belongsTo(Teacher::class);
+    }
+
+    public function subject()
+    {
+        return $this->belongsTo(Subject::class);
+    }
 }
