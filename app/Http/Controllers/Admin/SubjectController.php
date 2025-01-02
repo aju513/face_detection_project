@@ -10,13 +10,13 @@ use App\UI\SubjectUI;
 class SubjectController extends Controller
 {
     use CrudTrait;
-    
+
     protected $model, $ui, $view, $title;
     public function __construct(SubjectRepository $model)
     {
         $this->model = $model;
         $this->ui = new SubjectUI;
-        $this->view = "";
-        $this->title = "";
+        $this->view = "subjects";
+        $this->title = "Subject";
     }
 }

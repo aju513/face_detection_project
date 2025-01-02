@@ -8,18 +8,18 @@ class SubjectUI extends BaseUI
 {
     public $select = "*";
 
-    public $route = '';
+    public $route = 'subjects';
 
-    public $columns = [];
+    public $columns = ['name' => 'Name', 'code' => 'Code'];
 
     public $permissions = [
-        'index' => 'Manage Permissions',
-        'create' => 'Create Permissions',
-        'edit' => 'Edit Permissions',
-        'store' => 'Create Permissions',
-        'update' => 'Edit Permissions',
-        'destroy' => 'Delete Permissions',
-        'status' => 'Edit Permissions'
+        'index' => 'Manage Subject',
+        'create' => 'Create Subject',
+        'edit' => 'Edit Subject',
+        'store' => 'Create Subject',
+        'update' => 'Edit Subject',
+        'destroy' => 'Delete Subject',
+        'status' => 'Edit Subject'
     ];
 
     public $with = [];
@@ -49,10 +49,12 @@ class SubjectUI extends BaseUI
 
     public $rules = [
         'store' => [
-
+            'name' => 'required|string|max:50|min:0',
+            'code' => 'required|string|max:50|min:0'
         ],
         'update' => [
-
+            'name' => 'required|string|max:50|min:0',
+            'code' => 'required|string|max:50|min:0'
         ]
     ];
     public function getMessages()

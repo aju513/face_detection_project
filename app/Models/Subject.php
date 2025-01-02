@@ -8,11 +8,12 @@ use Spatie\Translatable\HasTranslations;
 
 class Subject extends BaseModel
 {
-    use SoftDeletes, HasTranslations;
+    use HasTranslations;
 
     protected $table = "subjects";
 
     protected $fillable = ['name', 'code'];
 
     public $translatable = [];
+
 }
