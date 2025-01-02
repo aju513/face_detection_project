@@ -38,4 +38,35 @@ return [
     'Edit Students',
     'Delete Students',
 
+    //Subject
+    'Manage Subject',
+    'Create Subject',
+    'Edit Subject',
+    'Delete Subject',
+
+    //StudentSubject
+    'Manage StudentSubject',
+    'Create StudentSubject',
+    'Edit StudentSubject',
+    'Delete StudentSubject',
+
+    //TeacherSubject
+    'Manage TeacherSubject',
+    'Create TeacherSubject',
+    'Edit TeacherSubject',
+    'Delete TeacherSubject',
+
+    //Attendance
+    'Manage Attendance',
+    'Create Attendance',
+    'Edit Attendance',
+    'Delete Attendance',
+
+    //Reschedule
+    'Manage Reschedule',
+    'Create Reschedule',
+    'Edit Reschedule',
+    'Delete Reschedule',
+
+
 ];
