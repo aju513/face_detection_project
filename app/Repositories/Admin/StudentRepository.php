@@ -20,6 +20,7 @@ class StudentRepository
     {
         $this->model = $model;
         $this->imageHelper = $imageHelper;
+        $this->user = $user;
     }
     public function store($data)
     {

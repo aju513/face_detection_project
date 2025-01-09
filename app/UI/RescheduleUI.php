@@ -8,18 +8,18 @@ class RescheduleUI extends BaseUI
 {
     public $select = "*";
 
-    public $route = '';
+    public $route = 'reschedules';
 
-    public $columns = [];
+    public $columns = ['teacher' => 'Teacher', 'subject' => 'Subject'];
 
     public $permissions = [
-        'index' => 'Manage Permissions',
-        'create' => 'Create Permissions',
-        'edit' => 'Edit Permissions',
-        'store' => 'Create Permissions',
-        'update' => 'Edit Permissions',
-        'destroy' => 'Delete Permissions',
-        'status' => 'Edit Permissions'
+        'index' => 'Manage Reschedule',
+        'create' => 'Create Reschedule',
+        'edit' => 'Edit Reschedule',
+        'store' => 'Create Reschedule',
+        'update' => 'Edit Reschedule',
+        'destroy' => 'Delete Reschedule',
+        'status' => 'Edit Reschedule'
     ];
 
     public $with = [];
@@ -49,10 +49,18 @@ class RescheduleUI extends BaseUI
 
     public $rules = [
         'store' => [
-
+            'teacher_subject_id' => 'required',
+            'reschedule_date' => 'required',
+            'new_end_time' => 'required',
+            'new_start_time' => 'required',
+            'reason' => 'nullable'
         ],
         'update' => [
-
+            'teacher_subject_id' => 'required',
+            'reschedule_date' => 'required',
+            'new_end_time' => 'required',
+            'new_start_time' => 'required',
+            'reason' => 'nullable'
         ]
     ];
     public function getMessages()
@@ -60,5 +68,13 @@ class RescheduleUI extends BaseUI
         return [
             'required' => 'This field is required'
         ];
+    }
+    public function teacher($model)
+    {
+        return $model->teacher?->name;
+    }
+    public function subject($model)
+    {
+        return $model->subject?->name;
     }
 }

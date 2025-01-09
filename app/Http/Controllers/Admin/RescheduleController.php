@@ -10,13 +10,13 @@ use App\UI\RescheduleUI;
 class RescheduleController extends Controller
 {
     use CrudTrait;
-    
+
     protected $model, $ui, $view, $title;
     public function __construct(RescheduleRepository $model)
     {
         $this->model = $model;
         $this->ui = new RescheduleUI;
-        $this->view = "";
-        $this->title = "";
+        $this->view = "reschedule";
+        $this->title = "Reschedule";
     }
 }

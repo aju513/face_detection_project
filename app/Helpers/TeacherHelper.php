@@ -3,6 +3,8 @@
 namespace App\Helpers;
 
 use App\Models\Teacher;
+use App\Models\TeacherSubject;
+use DB;
 use Spatie\Permission\Models\Role;
 
 class TeacherHelper
@@ -18,5 +20,11 @@ class TeacherHelper
     {
         return $this->model->pluck('name', 'id');
     }
+    public function teacherDropdown()
+    {
+        return TeacherSubject::join('teachers', 'teacher_subjects.teacher_id', '=', 'teachers.id')
+            ->pluck('teachers.name', 'teacher_subjects.id');
+    }
+
 
 }

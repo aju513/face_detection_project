@@ -17,4 +17,5 @@ class RescheduleRepository
     {
         $this->model = $model;
     }
+
 }

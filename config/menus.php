@@ -73,7 +73,7 @@ return [
         'name' => "StudentSubject",
         "display_name" => "Assign Student Subject",
         "icon" => "bi bi-safe",
-        "order" => 7,
+        "order" => 8,
         "permission" => "Manage StudentSubject",
         "route" => "admin.student-subjects.index"
     ],
@@ -81,7 +81,7 @@ return [
         'name' => "teacherSubject",
         "display_name" => "Assign Teacher Subject",
         "icon" => "bi bi-safe",
-        "order" => 8,
+        "order" => 7,
         "permission" => "Manage TeacherSubject",
         "route" => "admin.teacher-subjects.index"
     ],

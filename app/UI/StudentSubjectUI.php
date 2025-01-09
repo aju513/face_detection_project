@@ -8,18 +8,18 @@ class StudentSubjectUI extends BaseUI
 {
     public $select = "*";
 
-    public $route = '';
+    public $route = 'student-subjects';
 
     public $columns = [];
 
     public $permissions = [
-        'index' => 'Manage Permissions',
-        'create' => 'Create Permissions',
-        'edit' => 'Edit Permissions',
-        'store' => 'Create Permissions',
-        'update' => 'Edit Permissions',
-        'destroy' => 'Delete Permissions',
-        'status' => 'Edit Permissions'
+        'index' => 'Manage StudentSubject',
+        'create' => 'Create StudentSubject',
+        'edit' => 'Edit StudentSubject',
+        'store' => 'Create StudentSubject',
+        'update' => 'Edit StudentSubject',
+        'destroy' => 'Delete StudentSubject',
+        'status' => 'Edit StudentSubject'
     ];
 
     public $with = [];
@@ -49,10 +49,12 @@ class StudentSubjectUI extends BaseUI
 
     public $rules = [
         'store' => [
-
+            'student_id' => 'required',
+            'teacher_subject_id' => 'required',
         ],
         'update' => [
-
+            'student_id' => 'required',
+            'teacher_subject_id' => 'required',
         ]
     ];
     public function getMessages()
