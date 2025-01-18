@@ -10,7 +10,7 @@ class TeacherSubjectUI extends BaseUI
 
     public $route = 'teacher-subjects';
 
-    public $columns = ['teacher_id' => 'Teacher', 'subject_id' => 'Subject'];
+    public $columns = ['teacher' => 'Teacher', 'subject' => 'Subject'];
 
     public $permissions = [
         'index' => 'Manage TeacherSubject',
@@ -75,4 +75,12 @@ class TeacherSubjectUI extends BaseUI
         ];
     }
 
+    public function teacher($model)
+    {
+        return $model->teacher?->name;
+    }
+    public function subject($model)
+    {
+        return $model->subject?->name;
+    }
 }

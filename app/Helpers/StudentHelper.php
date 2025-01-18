@@ -23,6 +23,15 @@ class StudentHelper
     }
     public function teacherSubjects()
     {
-        return $this->teacherSubject->pluck('teacher_id', 'id');
+        $result = [];
+        foreach ($this->teacherSubject->get() as $item) {
+            $teacherName = $item->teacher->name ?? 'Unknown';
+            $subjectName = $item->subject->name ?? 'Unknown';
+            $result[$item->id] = "{$teacherName}_{$subjectName}";
+        }
+        return $result;
     }
+
+
+
 }
