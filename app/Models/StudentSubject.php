@@ -15,4 +15,12 @@ class StudentSubject extends BaseModel
     protected $fillable = ['student_id', 'teacher_subject_id'];
 
     public $translatable = [];
+    public function student()
+    {
+        return $this->belongsTo(Student::class, 'student_id');
+    }
+    public function teacherSubject()
+    {
+        return $this->belongsTo(TeacherSubject::class, 'teacher_subject_id');
+    }
 }

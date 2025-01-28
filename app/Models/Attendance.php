@@ -8,7 +8,7 @@ use Spatie\Translatable\HasTranslations;
 
 class Attendance extends BaseModel
 {
-    use SoftDeletes, HasTranslations;
+    use HasTranslations;
 
     protected $table = "attendances";
 

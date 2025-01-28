@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->string('email');
             $table->string('address')->nullable();
             $table->string('photo')->nullable();
+            $table->longText('encodings')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

@@ -2,24 +2,25 @@
 
 namespace App\UI;
 
+use App\Models\Student;
 use App\UI\Traits\CommonTrait;
 
 class AttendanceUI extends BaseUI
 {
     public $select = "*";
 
-    public $route = '';
+    public $route = 'attendances';
 
-    public $columns = [];
+    public $columns = ['date' => 'Date', 'student' => 'Student'];
 
     public $permissions = [
-        'index' => 'Manage Permissions',
-        'create' => 'Create Permissions',
-        'edit' => 'Edit Permissions',
-        'store' => 'Create Permissions',
-        'update' => 'Edit Permissions',
-        'destroy' => 'Delete Permissions',
-        'status' => 'Edit Permissions'
+        'index' => 'Manage Assignments',
+        'create' => 'Create Assignments',
+        'edit' => 'Edit Assignments',
+        'store' => 'Create Assignments',
+        'update' => 'Edit Assignments',
+        'destroy' => 'Delete Assignments',
+        'status' => 'Edit Assignments'
     ];
 
     public $with = [];
@@ -60,5 +61,11 @@ class AttendanceUI extends BaseUI
         return [
             'required' => 'This field is required'
         ];
+    }
+    public function student($model)
+    {
+        
+        dd(Student::where('student_id', $model->student_id)->first()->name);
+        return Student::where('student_id', $model->student_id)->first()->name;
     }
 }

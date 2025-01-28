@@ -24,13 +24,13 @@ class AuthController extends Controller
         $this->student = $student;
         $this->imageHelper = $imageHelper;
     }
+
     public function register(RegisterRequest $request)
     {
         $filename = null;
-
         // Handle photo upload and processing
         if (isset($request->photo) && $request->photo->isValid()) {
-            $directory = storage_path('app/public/' . $this->student::IMG_PATH_PHOTO . '/');
+            $directory = storage_path('app/public/' . $this->student::IMG_PATH . '/');
             $filename = $this->imageHelper->resizeCropImages(800, 600, $request->photo, $directory);
         }
 
@@ -101,23 +101,24 @@ class AuthController extends Controller
         return response()->json(['status' => false, 'message' => "Something went wrong"], 500);
     }
 
-    public function login(LoginRequest $request)
+    public function login(Request $request)
     {
 
         $user = $this->model->where('email', $request->email)
-            ->where('status', 1)->where('memberable_type', 'App\Models\Student')
+            ->where('memberable_type', 'App\Models\Student')
             ->first();
-
+        // dd($user);
         if (!empty($user)) {
-            
+
             if (Hash::check($request->password, $user->password)) {
                 $token = $user->createToken("mytoken")->accessToken;
                 $data = $this->student->findOrFail($user->memberable_id);
+
                 return response()->json([
                     "status" => true,
                     "message" => "Login successful",
                     "token" => $token,
-                    "data" => new StudentResource($data)
+                    "data" => ($data)
                 ]);
             } else {
 
@@ -136,4 +137,16 @@ class AuthController extends Controller
             ], 404);
         }
     }
+    public function logout()
+    {
+
+        $token = auth('api')->user()->token();
+
+        $token->revoke();
+        return response()->json([
+            "status" => true,
+            "message" => "User Logged out successfully"
+        ]);
+    }
+
 }

@@ -68,5 +68,10 @@ return [
     'Edit Reschedule',
     'Delete Reschedule',
 
+    //Reschedule
+    'Manage Assignments',
+    'Create Assignments',
+    'Edit Assignments',
+    'Delete Assignments',
 
 ];

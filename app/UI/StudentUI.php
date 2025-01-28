@@ -51,13 +51,13 @@ class StudentUI extends BaseUI
         'store' => [
             'name' => 'required',
             'email' => 'required',
-            'photo' => 'required',
+            'photo' => 'required|mimes:png,webp,jpg,jpeg,webp',
             'password' => 'required'
         ],
         'update' => [
             'name' => 'required',
             'email' => 'required',
-            'photo' => 'nullable',
+            'photo' => 'required|mimes:png,webp,jpg,jpeg,webp',
         ]
     ];
     public function getMessages()

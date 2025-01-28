@@ -10,10 +10,12 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('student_subjects', function (Blueprint $table) {
+        Schema::create('assignments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('student_id')->constrained('students');  // Foreign Key to Users (Students)
-            $table->foreignId('teacher_subject_id')->constrained('teacher_subjects');  // Foreign Key to Teacher_Subjects
+            $table->foreignId('teacher_subject_id')->constrained('teacher_subjects');
+            $table->string('title');
+            $table->string('url')->nullable();
+            $table->dateTime('deadline');
             $table->timestamps();
         });
     }
@@ -23,6 +25,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('student_subjects');
+        Schema::dropIfExists('assignments');
     }
 };

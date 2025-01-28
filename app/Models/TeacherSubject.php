@@ -24,4 +24,12 @@ class TeacherSubject extends BaseModel
     {
         return $this->belongsTo(Subject::class);
     }
+    public function assignments()
+    {
+        return $this->hasMany(Assignment::class);
+    }
+    public function studentSubjects()
+    {
+        return $this->hasMany(StudentSubject::class);
+    }
 }

@@ -94,11 +94,19 @@ return [
         "route" => "admin.attendances.index"
     ],
     [
-        'name' => "Reschedule",
-        "display_name" => "Reschedule",
+        'name' => "Assignments",
+        "display_name" => "Assignment",
         "icon" => "bi bi-safe",
         "order" => 10,
-        "permission" => "Manage Reschedule",
-        "route" => "admin.reschedules.index"
+        "permission" => "Manage Assignments",
+        "route" => "admin.assignments.index"
     ],
+    // [
+    //     'name' => "Reschedule",
+    //     "display_name" => "Reschedule",
+    //     "icon" => "bi bi-safe",
+    //     "order" => 10,
+    //     "permission" => "Manage Reschedule",
+    //     "route" => "admin.reschedules.index"
+    // ],
 ];
