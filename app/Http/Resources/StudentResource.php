@@ -16,7 +16,7 @@ class StudentResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'profile_picture' => url('storage/students/' . $this->profile_picture),
+            'photo' => url('storage/students/' . $this->photo),
             'name' => $this->name,
             'email' => $this->email,
             'address' => $this->address,

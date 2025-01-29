@@ -10,7 +10,7 @@ class StudentSubjectUI extends BaseUI
 
     public $route = 'student-subjects';
 
-    public $columns = [];
+    public $columns = ['student' => "Student", "teacher" => "Teacher", 'subject' => "Subject"];
 
     public $permissions = [
         'index' => 'Manage StudentSubject',
@@ -62,5 +62,17 @@ class StudentSubjectUI extends BaseUI
         return [
             'required' => 'This field is required'
         ];
+    }
+    public function student($model)
+    {
+        return $model->student->name;
+    }
+    public function teacher($model)
+    {
+        return $model->teacherSubject->teacher->name;
+    }
+    public function subject($model)
+    {
+        return $model->teacherSubject->subject->name;
     }
 }

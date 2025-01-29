@@ -58,9 +58,9 @@ class StudentController extends Controller
     public function classDetails($id)
     {
 
-        $model = TeacherSubject::with('subject')->where('id', $id)->get();
-        if(!$model){
-            return response()->json(["msg"=>'not found'],404);
+        $model = TeacherSubject::with('subject', 'teacher')->where('id', $id)->get();
+        if (!$model) {
+            return response()->json(["msg" => 'not found'], 404);
         }
         return new StudentClassesResource($model);
     }

@@ -94,6 +94,7 @@ class AuthController extends Controller
                 'status' => true,
                 'message' => "User registered successfully",
                 'token' => $token,
+                'student' => new StudentResource($student),
             ]);
         }
 
