@@ -12,8 +12,13 @@ class Student extends BaseModel
 
     protected $table = "students";
 
-    protected $fillable = ['name', 'email', 'photo'];
+    protected $fillable = ['name', 'email', 'photo', 'encodings'];
 
     public $translatable = [];
     const IMG_PATH = 'students';
+
+    public function studentSubject()
+    {
+        return $this->hasMany(StudentSubject::class);
+    }
 }

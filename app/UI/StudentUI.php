@@ -10,7 +10,7 @@ class StudentUI extends BaseUI
 
     public $route = 'students';
 
-    public $columns = [];
+    public $columns = ['name' => 'Name'];
 
     public $permissions = [
         'index' => 'Manage Students',
@@ -49,10 +49,15 @@ class StudentUI extends BaseUI
 
     public $rules = [
         'store' => [
-
+            'name' => 'required',
+            'email' => 'required',
+            'photo' => 'required|mimes:png,webp,jpg,jpeg,webp',
+            'password' => 'required'
         ],
         'update' => [
-
+            'name' => 'required',
+            'email' => 'required',
+            'photo' => 'required|mimes:png,webp,jpg,jpeg,webp',
         ]
     ];
     public function getMessages()

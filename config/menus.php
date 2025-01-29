@@ -61,4 +61,52 @@ return [
         "permission" => "Manage Students",
         "route" => "admin.students.index"
     ],
+    [
+        'name' => "subjects",
+        "display_name" => "Subject",
+        "icon" => "bi bi-safe",
+        "order" => 6,
+        "permission" => "Manage Subject",
+        "route" => "admin.subjects.index"
+    ],
+    [
+        'name' => "StudentSubject",
+        "display_name" => "Assign Student Subject",
+        "icon" => "bi bi-safe",
+        "order" => 8,
+        "permission" => "Manage StudentSubject",
+        "route" => "admin.student-subjects.index"
+    ],
+    [
+        'name' => "teacherSubject",
+        "display_name" => "Assign Teacher Subject",
+        "icon" => "bi bi-safe",
+        "order" => 7,
+        "permission" => "Manage TeacherSubject",
+        "route" => "admin.teacher-subjects.index"
+    ],
+    [
+        'name' => "Attendance",
+        "display_name" => "Attendance",
+        "icon" => "bi bi-safe",
+        "order" => 9,
+        "permission" => "Manage Attendance",
+        "route" => "admin.attendances.index"
+    ],
+    [
+        'name' => "Assignments",
+        "display_name" => "Assignment",
+        "icon" => "bi bi-safe",
+        "order" => 10,
+        "permission" => "Manage Assignments",
+        "route" => "admin.assignments.index"
+    ],
+    // [
+    //     'name' => "Reschedule",
+    //     "display_name" => "Reschedule",
+    //     "icon" => "bi bi-safe",
+    //     "order" => 10,
+    //     "permission" => "Manage Reschedule",
+    //     "route" => "admin.reschedules.index"
+    // ],
 ];
