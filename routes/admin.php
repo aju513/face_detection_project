@@ -30,3 +30,4 @@ Route::resource('teacher-subjects', 'TeacherSubjectController');
 Route::resource('attendances', 'AttendanceController');
 Route::resource('reschedules', 'RescheduleController');
 Route::resource('assignments', 'AssignmentController');
+Route::resource('notifications', 'NotificationController');

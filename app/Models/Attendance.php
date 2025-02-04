@@ -15,4 +15,8 @@ class Attendance extends BaseModel
     protected $fillable = ['student_subject_id', 'date', 'status'];
 
     public $translatable = [];
+    public function studentSubject()
+    {
+        return $this->belongsTo(StudentSubject::class, 'student_subject_id');
+    }
 }

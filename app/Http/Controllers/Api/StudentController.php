@@ -6,6 +6,7 @@ use App\Helpers\ImageHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AttendanceRequest;
 use App\Http\Requests\EditProfileRequest;
+use App\Http\Resources\StudentClassDetailsResoruce;
 use App\Http\Resources\StudentClassesResource;
 use App\Http\Resources\StudentResource;
 use App\Models\Student;
@@ -32,7 +33,7 @@ class StudentController extends Controller
 
         try {
             // Query the model with eager loading and filtering
-            $model = StudentSubject::with(['student', 'teacherSubject.subject'])
+            $model = StudentSubject::with(['teacherSubject.subject'])
                 ->whereHas('teacherSubject', function ($query) use ($name) {
                     $query->whereHas('subject', function ($subjectQuery) use ($name) {
                         if ($name) {
@@ -58,11 +59,12 @@ class StudentController extends Controller
     public function classDetails($id)
     {
 
-        $model = TeacherSubject::with('subject', 'teacher')->where('id', $id)->get();
+        $model = TeacherSubject::with('subject', 'teacher', 'assignments')->where('id', $id)->first();
         if (!$model) {
             return response()->json(["msg" => 'not found'], 404);
         }
-        return new StudentClassesResource($model);
+
+        return new StudentClassDetailsResoruce($model);
     }
     public function profile()
     {

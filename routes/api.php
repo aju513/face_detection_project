@@ -12,6 +12,7 @@ Route::get('/teacher', 'TeacherController@teacher');
 Route::get('/teacherStudent', 'TeacherController@teacherStudent');
 Route::middleware('auth:api')->group(
     function () {
+
         Route::get('/profile', 'StudentController@profile')->name('profile');
         Route::get('/logout', 'AuthController@logout')->name('logout');
         Route::post("/attendance", "StudentController@attendance");
@@ -26,6 +27,8 @@ Route::middleware('auth:api')->group(
         Route::post('/attendances', 'AttendanceController@markAttendance');
 
         Route::get('/notification', 'NotificationController@getAllNotificationOfStudent');
-
+        Route::get('/recent/attendances', 'AttendanceController@getRecentAttendance');
+        Route::get('/attendances/{id}', 'AttendanceController@getTotalAttendance');
+        
     }
 );

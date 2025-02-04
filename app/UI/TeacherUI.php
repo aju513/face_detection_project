@@ -58,7 +58,7 @@ class TeacherUI extends BaseUI
         'update' => [
             'name' => 'required',
             'email' => 'required',
-            'password' => 'required',
+            'password' => 'nullable',
             'photo' => 'nullable',
             'phone_no' => 'required'
         ]

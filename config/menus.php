@@ -101,6 +101,14 @@ return [
         "permission" => "Manage Assignments",
         "route" => "admin.assignments.index"
     ],
+    [
+        'name' => "Notifications",
+        "display_name" => "Notifications",
+        "icon" => "bi bi-safe",
+        "order" => 11,
+        "permission" => "Manage Assignments",
+        "route" => "admin.notifications.index"
+    ],
     // [
     //     'name' => "Reschedule",
     //     "display_name" => "Reschedule",

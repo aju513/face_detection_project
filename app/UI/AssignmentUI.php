@@ -49,7 +49,7 @@ class AssignmentUI extends BaseUI
 
     public $rules = [
         'store' => [
-            'teacher_subject_id' => ['required', 'exists:teacher_subjects,id'],
+            'teacher_subject_id' => ['required', 'exists :teacher_subjects,id'],
             'title' => ['required', 'string', 'max:255'],
             'url' => ['nullable', 'url'],
             'deadline' => ['required', 'date'],

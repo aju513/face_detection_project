@@ -119,7 +119,7 @@ class AuthController extends Controller
                     "status" => true,
                     "message" => "Login successful",
                     "token" => $token,
-                    "data" => ($data)
+                    "data" => new StudentResource($data),
                 ]);
             } else {
 

@@ -11,7 +11,7 @@ class AttendanceUI extends BaseUI
 
     public $route = 'attendances';
 
-    public $columns = ['date' => 'Date', 'student' => 'Student'];
+    public $columns = ['date' => 'Date', 'time' => 'Time', 'student' => 'Student', 'subject' => 'Subject'];
 
     public $permissions = [
         'index' => 'Manage Assignments',
@@ -64,8 +64,15 @@ class AttendanceUI extends BaseUI
     }
     public function student($model)
     {
-        
-        dd(Student::where('student_id', $model->student_id)->first()->name);
-        return Student::where('student_id', $model->student_id)->first()->name;
+        return $model->studentSubject->student->name;
+    }
+
+    public function time($model)
+    {
+        return $model->created_at->format('H:i:s');
+    }
+    public function subject($model)
+    {
+        return $model->studentSubject->teacherSubject->subject->name;
     }
 }

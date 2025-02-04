@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 
 use App\Http\Requests\CreateAssignmentRequest;
+use App\Http\Resources\AssignmentResource;
 use App\Models\Assignment;
 use App\Models\StudentSubject;
 use Illuminate\Http\Request;
@@ -28,13 +29,14 @@ class AssignmentController extends Controller
     public function allAssignmentsOfStudent()
     {
         $student = auth('api')->user()->memberable_id;
+
         $assignments = Assignment::whereHas('teacherSubject', function ($query) {
             $query->whereHas('studentSubjects', function ($studenQuery) {
                 $studenQuery->where('student_id', auth('api')->user()->memberable_id);
             });
-        })->with('teacherSubject')->get();
-        return $assignments;
+        })->with('teacherSubject.subject')->get();
+
+        return AssignmentResource::collection($assignments);
         // $studentSubject = StudentSubject::with('teacherSubject.assignments')->where('student_id', $student)->get();
-        return $studentSubject;
     }
 }

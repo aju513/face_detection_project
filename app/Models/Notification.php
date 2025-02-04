@@ -2,19 +2,20 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use App\Models\BaseModel;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Translatable\HasTranslations;
 
-class Notification extends Model
+class Notification extends BaseModel
 {
-    use HasFactory;
+    use HasTranslations;
+
     protected $table = "attendex_notifications";
 
-    protected $fillable = [
-        'teacher_subject_id',
-        'title',
-        'details',
-    ];
+    protected $fillable = ['title', 'teacher_subject_id', 'details'];
+
+
+    public $translatable = [];
     public function teacherSubject()
     {
         return $this->belongsTo(TeacherSubject::class, 'teacher_subject_id');
